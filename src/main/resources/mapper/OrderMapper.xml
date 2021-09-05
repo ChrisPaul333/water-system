@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjl.watersystem.mapper.OrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.cjl.watersystem.entity.Order">
+        <id column="order_id" property="orderId" />
+        <result column="customer_id" property="customerId" />
+        <result column="amount" property="amount" />
+        <result column="state" property="state" />
+        <result column="date" property="date" />
+        <result column="water_id" property="waterId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        order_id, customer_id, amount, state, date, water_id
+    </sql>
+
+</mapper>

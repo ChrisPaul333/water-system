@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjl.watersystem.mapper.WaterMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.cjl.watersystem.entity.Water">
+        <id column="water_id" property="waterId" />
+        <result column="manufacturing_date" property="manufacturingDate" />
+        <result column="shelf_life" property="shelfLife" />
+        <result column="volume" property="volume" />
+        <result column="price" property="price" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        water_id, manufacturing_date, shelf_life, volume, price
+    </sql>
+
+        <select id="getTicketList" resultType="com.cjl.watersystem.entity.Ticket" parameterType="map">
+            select ticket_id,customer_id,customer_name
+            from water_system.ticket natural join water_system.customer
+            <where>
+                <if test="params.ticketId != null and params.ticketId != ''">
+                    watertickets_id = #{params.waterticketsId}
+                </if>
+                <if test="params.customerName != null and params.customerName != ''">
+                    and customer_name = #{params.customerName}
+                </if>
+                <if test="params.customerId != null and params.customerId != ''">
+                    and customer_id = #{params.customerId}
+                </if>
+            </where>
+            order by watertickets_id
+            limit #{begin}, #{pageSize}
+        </select>
+
+        <select id="getCount" resultType="int" parameterType="map">
+            select count(*)
+            from water_system.ticket natural join water_system.customer
+            <where>
+                <if test="params.ticketId != null and params.ticketId != ''">
+                    watertickets_id = #{params.waterticketsId}
+                </if>
+                <if test="params.customerName != null and params.customerName != ''">
+                    and customer_name = #{params.customerName}
+                </if>
+                <if test="params.customerId != null and params.customerId != ''">
+                    and customer_id = #{params.customerId}
+                </if>
+            </where>
+        </select>
+
+</mapper>
