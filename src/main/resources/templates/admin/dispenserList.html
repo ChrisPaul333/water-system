@@ -135,7 +135,7 @@
                 });
             } else if (obj.event === 'update') {
                 layer.confirm("update this row？", function (index) {
-                    updateCommodity(data, index);
+                    updateDispenser(data, index);
                 });
             } else if (obj.event === 'detail') {
                 layer.confirm("see the detail？", function (index) {
@@ -208,9 +208,9 @@
         }
 
         //行工具栏编辑按钮事件
-        function updateCommodity(data, index) {
+        function updateDispenser(data, index) {
             layer.close(index);
-            window.location.href = "/admin/commodityUpdate/" + data.commodityId;
+            window.location.href = "/dispenser/update" + data.dispenserId;
         }
 
         // 查看商品详细信息

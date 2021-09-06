@@ -15,22 +15,18 @@
 <div class="layui-row" style="margin: 10px;">
     <form class="layui-form layui-col-md12 we-search">
         <div class="layui-inline">
-            <input type="text" name="customerId" id="customerId" placeholder="Customer ID" autocomplete="off"
+            <input type="text" name="customer_id" id="customer_id" placeholder="Customer ID" autocomplete="off"
                    class="layui-input">
         </div>
         <div class="layui-inline">
-            <input type="text" name="customerName" id="customerName" placeholder="NickName" autocomplete="off"
-                   class="layui-input">
-        </div>
-        <div class="layui-inline">
-            <input type="text" name="realName" id="realName" placeholder="realName" autocomplete="off"
+            <input type="text" name="customer_name" id="customer_name" placeholder="Customer Name" autocomplete="off"
                    class="layui-input">
         </div>
         <div class="layui-inline">
             <input type="text" name="phone" id="phone" placeholder="phone" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <input type="text" name="email" id="email" placeholder="email" autocomplete="off" class="layui-input">
+            <input type="text" name="address" id="address" placeholder="email" autocomplete="off" class="layui-input">
         </div>
         <button class="layui-btn layui-btn-sm" type="button" id="searchBtn"><i class="layui-icon">&#xe615;</i>Search
         </button>
@@ -64,7 +60,7 @@
         var t = table.render({
             elem: '#custList'
             , id: 'datatableID'
-            , url: '/op/customerList'
+            , url: '/customer/getList'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , cellMinWidth: 80
             , page: true
@@ -76,14 +72,10 @@
             , cols: [
                 [
                     {type: 'checkbox', fixed: 'left'}
-                    , {field: 'customerId', title: 'ID', fixed: 'left', align: 'center', width: 120, sort: true}
-                    , {field: 'customerName', title: 'Nickname', align: 'center', width: 120}
-                    , {field: 'sex', title: 'Sex', width: 80, align: 'center'}
-                    , {field: 'realName', title: 'realName', width: 120, align: 'center'}
+                    , {field: 'customerId', title: 'customerId', fixed: 'left', align: 'center', width: 120, sort: true}
+                    , {field: 'customerName', title: 'customerName', align: 'center', width: 120}
                     , {field: 'phone', title: 'phone', align: 'center', width: 150}
-                    , {field: 'email', title: 'email', align: 'center', width: 200}
                     , {field: 'address', title: 'address', align: 'center', width: 200}
-                    , {field: 'credit', title: 'credit', width: 120, align: 'center'}
                     , {fixed: 'right', title: 'operation', toolbar: '#barDemo'}
                 ]
             ]
@@ -94,14 +86,14 @@
 
         //绑定搜索事件
         $('#searchBtn').click(function () {
-            let customerId = $('#customerId').val();
+            let customer_id = $('#customer_id').val();
             let customerName = $('#customerName').val();
             let realName = $('#realName').val();
             let phone = $('#phone').val();
             let email = $('#email').val();
             t.reload({ //重新加载表格
                 where: {
-                    'customerId': customerId,
+                    'customer_id': customer_id,
                     'customerName': customerName,
                     'realName': realName,
                     'phone': phone,
