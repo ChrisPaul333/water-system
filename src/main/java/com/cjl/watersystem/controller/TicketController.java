@@ -4,6 +4,7 @@ package com.cjl.watersystem.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cjl.watersystem.entity.Customer;
 import com.cjl.watersystem.entity.Ticket;
 import com.cjl.watersystem.service.CustomerService;
 import com.cjl.watersystem.service.TicketService;
@@ -82,6 +83,10 @@ public class TicketController {
         ticket.setCustomerId(customer_id);
         ticket.setTicketId(id);
         if(ticketService.save(ticket)){
+            Customer customer = customerService.getById(customer_id);
+            int quantity = customer.getQuantity() + 1;
+            customer.setQuantity(quantity);
+            customerService.updateById(customer);
             dataJsonUtils.setMsg("添加水票成功！");
             dataJsonUtils.setCode(200);
         } else {
