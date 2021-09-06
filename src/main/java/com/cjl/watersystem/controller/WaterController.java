@@ -46,19 +46,19 @@ public class WaterController {
         Map<String, Object> params = new HashMap<>();
         params.put("water_id",water_id);
         params.put("manufacturing_date",manufacturing_date);
-        if(shelf_life == null){
+        if(shelf_life == null || shelf_life == ""){
             params.put("shelf_life",null);
         } else {
             params.put("shelf_life",Integer.parseInt(shelf_life));
         }
 
-        if(volume == null){
+        if(volume == null || volume == ""){
             params.put("volume",null);
         } else {
             params.put("volume",Integer.parseInt(volume));
         }
 
-        if(volume == null){
+        if(price == null || price == ""){
             params.put("price",null);
         } else {
             params.put("price",new BigDecimal(price));

@@ -51,11 +51,10 @@ public class DispenserController {
         Map<String, Object> params = new HashMap<>();
         params.put("dispenser_id",dispenser_id);
         params.put("manufacturing_date",manufacturing_date);
-        if(state == null){
+        if(state == null || state == "")
             params.put("state",null);
-        } else {
+        else
             params.put("state",Integer.parseInt(state));
-        }
         queryWrapper.allEq(params,false);
         IPage<Dispenser> iPage = dispenserService.page(new Page<>(page, limit),queryWrapper);
         if(dispenserService.count(queryWrapper) > 0){

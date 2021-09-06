@@ -43,12 +43,12 @@ public class CourierController {
         QueryWrapper<Courier> queryWrapper = new QueryWrapper<>();
         Map<String, Object> params = new HashMap<>();
         params.put("courier_name",courier_name);
-        if(count == null){
+        if(count == null || count == ""){
             params.put("count",null);
         } else {
             params.put("count",Integer.parseInt(count));
         }
-        if(state == null){
+        if(state == null || state == ""){
             params.put("state",null);
         } else {
             params.put("state",Integer.parseInt(state));
@@ -184,12 +184,13 @@ public class CourierController {
         courier.setCourierId(map.get("courier_id"));
         courier.setPhone(map.get("phone"));
         courier.setCourierName(map.get("courier_name"));
-        int state;
-        if(map.get("state").equals("1"))
-            state = 1;
-        else
-            state = 0;
-        courier.setState(state);
+        if(map.get("state").equals("1")) {
+            courier.setState(1);
+        }
+        else if(map.get("state").equals("0")) {
+            courier.setState(0);
+        }
+
         if(courierService.updateById(courier)){
             dataJsonUtils.setCode(200);
             dataJsonUtils.setMsg("修改送水员信息成功！");

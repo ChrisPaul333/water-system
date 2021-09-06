@@ -48,7 +48,7 @@ public class CustomerController {
         params.put("customer_name",customer_name);
         params.put("phone",phone);
         params.put("address",address);
-        if(quantity == null){
+        if(quantity == null || quantity == ""){
             params.put("quantity",null);
         } else {
             params.put("quantity",Integer.parseInt(quantity));
