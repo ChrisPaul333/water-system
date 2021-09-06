@@ -139,7 +139,7 @@ public class CustomerController {
             }
         }
         if(error){
-            dataJsonUtils.setMsg("顾客不存在！");
+            dataJsonUtils.setMsg("删除顾客失败！");
             dataJsonUtils.setCode(0);
         } else {
             dataJsonUtils.setMsg("删除顾客成功！");
