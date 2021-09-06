@@ -68,6 +68,26 @@ public class CustomerController {
     }
 
     /*
+     * 获取对应id顾客信息
+     * */
+    @RequestMapping("/getById")
+    @ResponseBody
+    public String selectCustomerById(@RequestBody String id){
+        DataJsonUtils dataJsonUtils = new DataJsonUtils();
+        Customer customer = customerService.getById(id);
+        if(customer == null){
+            dataJsonUtils.setCode(0);
+            dataJsonUtils.setMsg("不存在该顾客！");
+        } else {
+            dataJsonUtils.setMsg("获取顾客信息成功！");
+            dataJsonUtils.setCode(200);
+            dataJsonUtils.setCount(1);
+            dataJsonUtils.setData(customer);
+        }
+        return dataJsonUtils.toString();
+    }
+
+    /*
      * 添加顾客
      * */
     @RequestMapping("/add")

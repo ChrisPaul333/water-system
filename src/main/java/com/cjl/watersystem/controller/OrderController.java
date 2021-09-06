@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cjl.watersystem.entity.Customer;
+import com.cjl.watersystem.entity.Dispenser;
 import com.cjl.watersystem.entity.Order;
 import com.cjl.watersystem.service.OrderService;
 import com.cjl.watersystem.util.DataJsonUtils;
@@ -67,6 +68,26 @@ public class OrderController {
         } else {
             dataJsonUtils.setCode(0);
             dataJsonUtils.setMsg("get data unsuccessfully");
+        }
+        return dataJsonUtils.toString();
+    }
+
+    /*
+     * 获取对应id订单信息
+     * */
+    @RequestMapping("/getById")
+    @ResponseBody
+    public String selectOrderById(@RequestBody String id){
+        DataJsonUtils dataJsonUtils = new DataJsonUtils();
+        Order order = orderService.getById(id);
+        if(order == null){
+            dataJsonUtils.setCode(0);
+            dataJsonUtils.setMsg("不存在该订单！");
+        } else {
+            dataJsonUtils.setMsg("获取订单信息成功！");
+            dataJsonUtils.setCode(200);
+            dataJsonUtils.setCount(1);
+            dataJsonUtils.setData(order);
         }
         return dataJsonUtils.toString();
     }
