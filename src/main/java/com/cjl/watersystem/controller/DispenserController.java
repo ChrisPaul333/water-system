@@ -60,12 +60,12 @@ public class DispenserController {
         IPage<Dispenser> iPage = dispenserService.page(new Page<>(page, limit),queryWrapper);
         if(dispenserService.count(queryWrapper) > 0){
             dataJsonUtils.setCode(200);
-            dataJsonUtils.setMsg("get data successfully");
+            dataJsonUtils.setMsg("获取饮水机信息成功！");
             dataJsonUtils.setCount(dispenserService.count(queryWrapper));
             dataJsonUtils.setData(iPage.getRecords());
         } else {
             dataJsonUtils.setCode(0);
-            dataJsonUtils.setMsg("get data unsuccessfully");
+            dataJsonUtils.setMsg("获取饮水机信息失败！");
         }
         return dataJsonUtils.toString();
     }
@@ -82,7 +82,7 @@ public class DispenserController {
         String state = map.get("state");
         Dispenser dispenser = new Dispenser();
         if(dispenserService.getById(id) != null){
-            dataJsonUtils.setMsg("dispenser has existed");
+            dataJsonUtils.setMsg("饮水机已存在！");
             dataJsonUtils.setCode(0);
             return dataJsonUtils.toString();
         }
@@ -95,10 +95,10 @@ public class DispenserController {
         dispenser.setManufacturingDate(manufacturing);
 
         if(dispenserService.save(dispenser)){
-            dataJsonUtils.setMsg("insert successfully");
+            dataJsonUtils.setMsg("添加饮水机成功！");
             dataJsonUtils.setCode(200);
         } else {
-            dataJsonUtils.setMsg("insert unsuccessfully");
+            dataJsonUtils.setMsg("添加饮水机失败！");
             dataJsonUtils.setCode(0);
         }
         return dataJsonUtils.toString();
@@ -114,9 +114,9 @@ public class DispenserController {
         Dispenser dispenser = dispenserService.getById(id);
         if(dispenser == null){
             dataJsonUtils.setCode(0);
-            dataJsonUtils.setMsg("no such dispenser");
+            dataJsonUtils.setMsg("不存在该饮水机！");
         } else {
-            dataJsonUtils.setMsg("successfully");
+            dataJsonUtils.setMsg("获取饮水机信息成功！");
             dataJsonUtils.setCode(200);
             dataJsonUtils.setCount(1);
             dataJsonUtils.setData(dispenser);
@@ -144,9 +144,9 @@ public class DispenserController {
         updateWrapper.eq("dispenser_id",map.get("id")).set("state",s);
         if(dispenserService.update(updateWrapper)){
             dataJsonUtils.setCode(200);
-            dataJsonUtils.setMsg("update successfully");
+            dataJsonUtils.setMsg("修改状态成功！");
         } else {
-            dataJsonUtils.setMsg("update unsuccessfully");
+            dataJsonUtils.setMsg("修改状态失败！");
             dataJsonUtils.setCode(0);
         }
         return dataJsonUtils.toString();
@@ -162,11 +162,11 @@ public class DispenserController {
         int count = dispenserService.count();
         if(count >= 0){
             dataJsonUtils.setCode(200);
-            dataJsonUtils.setMsg("successfully");
+            dataJsonUtils.setMsg("获取库存信息成功！");
             dataJsonUtils.setData(count);
         } else {
             dataJsonUtils.setCode(0);
-            dataJsonUtils.setMsg("unsuccessfully");
+            dataJsonUtils.setMsg("获取库存信息失败！");
         }
         return dataJsonUtils.toString();
     }
@@ -185,11 +185,11 @@ public class DispenserController {
             }
         }
         if(error){
-            dataJsonUtils.setMsg("dispenser not exists");
+            dataJsonUtils.setMsg("删除饮水机失败！");
             dataJsonUtils.setCode(0);
         } else {
-            dataJsonUtils.setMsg("dispenser not exists");
-            dataJsonUtils.setCode(0);
+            dataJsonUtils.setMsg("删除饮水机成功！");
+            dataJsonUtils.setCode(200);
         }
         return dataJsonUtils.toString();
     }
@@ -203,9 +203,9 @@ public class DispenserController {
         DataJsonUtils dataJsonUtils = new DataJsonUtils();
         if(dispenserService.removeById(id)){
             dataJsonUtils.setCode(200);
-            dataJsonUtils.setMsg("delete successfully");
+            dataJsonUtils.setMsg("删除饮水机成功！");
         } else {
-            dataJsonUtils.setMsg("dispenser not exists");
+            dataJsonUtils.setMsg("删除饮水机失败！");
             dataJsonUtils.setCode(0);
         }
         return dataJsonUtils.toString();
