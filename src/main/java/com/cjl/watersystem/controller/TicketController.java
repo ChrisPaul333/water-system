@@ -74,19 +74,29 @@ public class TicketController {
             dataJsonUtils.setCode(0);
             return dataJsonUtils.toString();
         }
-        String id = GenerateIdUtils.generateTicketID();
-        while(ticketService.getById(id) != null){
-            id = GenerateIdUtils.generateTicketID();
-        }
+        int count = Integer.parseInt(map.get("count"));
+        boolean error = false;
+        for (int i = 1; i <= count; i++) {
+            String id = GenerateIdUtils.generateTicketID();
+            while (ticketService.getById(id) != null) {
+                id = GenerateIdUtils.generateTicketID();
+            }
 
-        Ticket ticket = new Ticket();
-        ticket.setCustomerId(customer_id);
-        ticket.setTicketId(id);
-        if(ticketService.save(ticket)){
-            Customer customer = customerService.getById(customer_id);
-            int quantity = customer.getQuantity() + 1;
-            customer.setQuantity(quantity);
-            customerService.updateById(customer);
+            Ticket ticket = new Ticket();
+            ticket.setCustomerId(customer_id);
+            ticket.setTicketId(id);
+
+            if(ticketService.save(ticket)){
+                Customer customer = customerService.getById(customer_id);
+                int quantity = customer.getQuantity() + 1;
+                customer.setQuantity(quantity);
+                customerService.updateById(customer);
+            } else {
+                error = true;
+            }
+        }
+        if(!error){
+
             dataJsonUtils.setMsg("添加水票成功！");
             dataJsonUtils.setCode(200);
         } else {

@@ -17,8 +17,8 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <blockquote class="layui-elem-quote">Welcome, [[${name}]]!
-                        &emsp;Time: &emsp;<span id="time">time</span>
+                    <blockquote class="layui-elem-quote">欢迎!
+                        &emsp;北京时间: &emsp;<span id="time">time</span>
                     </blockquote>
                 </div>
             </div>
@@ -30,31 +30,31 @@
                     <ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
                         <li class="layui-col-md2 layui-col-xs6">
                             <a href="javascript:void(0);" class="x-admin-backlog-body">
-                                <h3>Registered Customers</h3>
-                                <p><cite id="cusNumber"></cite></p>
+                                <h3>顾客数量</h3>
+                                <p><cite id="customerNum"></cite></p>
                             </a>
                         </li>
                         <li class="layui-col-md2 layui-col-xs6">
                             <a href="javascript:void(0);" class="x-admin-backlog-body">
-                                <h3>Customer Service</h3>
-                                <p><cite id="csNumber"></cite></p>
+                                <h3>送水员数量</h3>
+                                <p><cite id="courierNum"></cite></p>
                             </a>
                         </li>
                         <li class="layui-col-md2 layui-col-xs6">
                             <a href="javascript:void(0);" class="x-admin-backlog-body">
-                                <h3>Commodity OnSale</h3>
-                                <p><cite id="onSaleCom"></cite></p>
+                                <h3>桶装水库存</h3>
+                                <p><cite id="waterNum"></cite></p>
                             </a>
                         </li>
                         <li class="layui-col-md2 layui-col-xs6">
                             <a href="javascript:void(0);" class="x-admin-backlog-body">
-                                <h3>Completed Order</h3>
-                                <p><cite id="orderNumber"></cite></p>
+                                <h3>饮水机库存</h3>
+                                <p><cite id="dispenserNum"></cite></p>
                             </a>
                         </li>
                         <li class="layui-col-md2 layui-col-xs6">
                             <a href="javascript:void(0);" class="x-admin-backlog-body">
-                                <h3>Running Days</h3>
+                                <h3>系统运行时间</h3>
                                 <p><cite id="days"></cite></p>
                             </a>
                         </li>
@@ -64,29 +64,29 @@
         </div>
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">System Info</div>
+                <div class="layui-card-header">系统信息</div>
                 <div class="layui-card-body ">
                     <table class="layui-table">
                         <tbody>
                         <tr>
-                            <th>Version</th>
-                            <td>Release 2.0</td>
+                            <th>名称</th>
+                            <td>趣送水信息管理系统</td>
                         </tr>
                         <tr>
-                            <th>Server DNS</th>
-                            <td>106.15.139.161</td>
+                            <th>开发语言</th>
+                            <td>java</td>
                         </tr>
                         <tr>
-                            <th>Operation System</th>
-                            <td>Ubuntu 18.04</td>
+                            <th>数据库</th>
+                            <td>Mysql</td>
                         </tr>
                         <tr>
-                            <th>Operating environment</th>
-                            <td>Java + Tomcat + Mysql</td>
+                            <th>系统架构</th>
+                            <td>MVC三层架构</td>
                         </tr>
                         <tr>
-                            <th>Development environment</th>
-                            <td>Springboot5 + shiro + thymeleaf + mybatis</td>
+                            <th>开发环境</th>
+                            <td>Springboot + thymeleaf + mybatis-plus</td>
                         </tr>
                         </tbody>
                     </table>
@@ -95,13 +95,13 @@
         </div>
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">Develop team</div>
+                <div class="layui-card-header">开发者</div>
                 <div class="layui-card-body ">
                     <table class="layui-table">
                         <tbody>
                         <tr>
-                            <th>Author</th>
-                            <td>class 3 - group 4</td>
+                            <th>小组</th>
+                            <td>12</td>
                         </tr>
                         </tbody>
                     </table>
@@ -129,10 +129,10 @@
                 success: function (data) {
                     let res = JSON.parse(data);
                     if (res.code === 200) {
-                        $('#cusNumber').html("&emsp;" + res.data.cusNumber);
-                        $('#csNumber').html("&emsp;" + res.data.csNumber);
-                        $('#onSaleCom').html("&emsp;" + res.data.onSaleCom);
-                        $('#orderNumber').html("&emsp;" + res.data.orderNumber);
+                        $('#customerNum').html("&emsp;" + res.data.customerNum);
+                        $('#courierNum').html("&emsp;" + res.data.courierNum);
+                        $('#waterNum').html("&emsp;" + res.data.waterNum);
+                        $('#dispenserNum').html("&emsp;" + res.data.dispenserNum);
                         $('#days').html("&emsp;" + res.data.days);
                         return false;
                     } else {

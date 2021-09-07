@@ -51,13 +51,11 @@ public class GenerateIdUtils {
      * @return 'CD' + getSysTimeInMillis() + 0~9
      */
     public static String generateCourierID() {
-        commodityFlag %= 10;
-        return "CD" + getSysTimeInMillis() + commodityFlag++;
+        return "CD" + 10000 + commodityFlag++;
     }
 
     public static String generateOrderID() {
-        orderFlag %= 10;
-        return "O" + getSysTimeInMillis() + orderFlag++;
+        return "O" + 10000 + orderFlag++;
     }
 
     public static String generateComplaintID() {
